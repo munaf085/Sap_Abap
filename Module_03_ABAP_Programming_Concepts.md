@@ -720,5 +720,10 @@ In **Module 4**, we'll explore:
 
 ---
 
-**Previous Module**: [Module 2: ABAP Workbench & Development Environment](Module_02_ABAP_Workbench.md)  
-**Next Module**: [Module 4: Data Dictionary (DDIC)](Module_04_Data_Dictionary.md)
+## 📚 **Continue Your Learning Journey**
+
+| **Previous Module** | **Next Module** |
+|---|---|
+| [Module 2: ABAP Workbench & Development Environment](Module_02_ABAP_Workbench.md) | [Module 4: Data Dictionary (DDIC)](Module_04_Data_Dictionary.md) |
+
+**Additional Resources**: [📚 Comprehensive Resource Hub](Additional_Resources.md) - Access all documentation, tools, and learning materials in one place.

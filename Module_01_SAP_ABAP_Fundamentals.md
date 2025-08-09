@@ -252,12 +252,10 @@ In **Module 2**, we'll dive deeper into:
 
 ---
 
-## 📚 Additional Resources
+## 📚 **Continue Your Learning Journey**
 
-- [SAP Help Portal - ABAP](https://help.sap.com/abap)
-- [SAP Community - ABAP](https://community.sap.com/topics/abap)
-- [ABAP Keyword Documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/index.htm)
+| **Previous Module** | **Next Module** |
+|---|---|
+| 🏠 [Course Index](Course_Index.md) | [Module 2: ABAP Workbench & Development Environment](Module_02_ABAP_Workbench.md) |
 
----
-
-**Next Module**: [Module 2: ABAP Workbench & Development Environment](Module_02_ABAP_Workbench.md)
+**Additional Resources**: [📚 Comprehensive Resource Hub](Additional_Resources.md) - Access all documentation, tools, and learning materials in one place.

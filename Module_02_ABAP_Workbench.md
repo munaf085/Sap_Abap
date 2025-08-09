@@ -393,13 +393,10 @@ In **Module 3**, we'll learn:
 
 ---
 
-## 📚 Additional Resources
+## 📚 **Continue Your Learning Journey**
 
-- [SAP Library - ABAP Workbench](https://help.sap.com/saphelp_nw73ehp1/helpdata/en/2f/b04a2e454f429de10000000a174cb4/frameset.htm)
-- [Transport Management Guide](https://help.sap.com/viewer/transport)
-- [ABAP Development Guidelines](https://help.sap.com/abap_guidelines)
+| **Previous Module** | **Next Module** |
+|---|---|
+| [Module 1: SAP ABAP Fundamentals](Module_01_SAP_ABAP_Fundamentals.md) | [Module 3: ABAP Programming Concepts](Module_03_ABAP_Programming_Concepts.md) |
 
----
-
-**Previous Module**: [Module 1: SAP ABAP Fundamentals](Module_01_SAP_ABAP_Fundamentals.md)  
-**Next Module**: [Module 3: ABAP Programming Concepts](Module_03_ABAP_Programming_Concepts.md)
+**Additional Resources**: [📚 Comprehensive Resource Hub](Additional_Resources.md) - Access all documentation, tools, and learning materials in one place.

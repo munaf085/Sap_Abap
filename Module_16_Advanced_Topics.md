@@ -929,4 +929,12 @@ This course progression takes you from absolute beginner to enterprise-level ABA
 
 ---
 
-**Next Steps**: You're now ready to tackle advanced SAP projects and continue your journey toward becoming an ABAP architect!
+## 📚 **Continue Your Learning Journey**
+
+| **Previous Module** | **Next Module** |
+|---|---|
+| [Module 15: ABAP on HANA](Module_15_ABAP_on_HANA.md) | [Module 17: Testing, Quality Assurance & DevOps](Module_17_Testing_Quality_DevOps.md) |
+
+**Additional Resources**: [📚 Comprehensive Resource Hub](Additional_Resources.md) - Access all documentation, tools, and learning materials in one place.
+
+**🎓 Course Completion**: [🏠 Return to Course Index](Course_Index.md) to explore bonus modules and hands-on exercises!
