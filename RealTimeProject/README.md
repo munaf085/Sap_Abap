@@ -3,8 +3,6 @@
 ## 📋 **Project Overview**
 
 **Project Name:** Advanced E-Commerce Integration Platform with SAP ERP  
-**Duration:** 8 months  
-**Team Size:** 12 members (4 ABAP developers, 2 functional consultants, 2 basis admins, 2 integration specialists, 1 project manager, 1 architect)  
 **Your Role:** Senior ABAP Developer & Technical Lead  
 
 ## 🚀 **How to Implement This in SAP ABAP**
