@@ -4,218 +4,824 @@
 
 **Learn OOP from basics to enterprise-level patterns - No prior OOP knowledge required!**
 
-This module teaches you everything about Object-Oriented Programming in ABAP, starting from fundamental concepts and progressing to advanced enterprise patterns.
+This module is structured as a progressive learning journey, broken down into digestible submodules. Each submodule builds upon the previous one, with plenty of hands-on examples.
 
 ---
 
-## 📖 **Table of Contents**
-1. [🌟 OOP Fundamentals - What & Why](#-oop-fundamentals---what--why)
-2. [🏗️ Classes & Objects - Building Blocks](#️-classes--objects---building-blocks)
-3. [🔧 Methods & Attributes - Core Components](#-methods--attributes---core-components)
-4. [🎭 Inheritance - Code Reusability](#-inheritance---code-reusability)
-5. [🔌 Interfaces - Contracts & Standards](#-interfaces---contracts--standards)
-6. [🛡️ Encapsulation - Data Protection](#️-encapsulation---data-protection)
-7. [🔄 Polymorphism - Flexible Design](#-polymorphism---flexible-design)
-8. [⚠️ Exception Handling - Error Management](#️-exception-handling---error-management)
-9. [🏭 Design Patterns - Best Practices](#-design-patterns---best-practices)
-10. [🚀 Advanced Enterprise Patterns](#-advanced-enterprise-patterns)
+## 📖 **Module Structure - Learning Path**
+
+### **Phase 1: Foundation (Start Here)**
+- **[12.1 OOP Fundamentals](#121-oop-fundamentals)** - What is OOP and why use it?
+- **[12.2 Your First Class](#122-your-first-class)** - Creating your very first object
+- **[12.3 Understanding Objects](#123-understanding-objects)** - Objects vs Classes explained simply
+
+### **Phase 2: Core Concepts** 
+- **[12.4 Methods & Attributes](#124-methods--attributes)** - The building blocks of classes
+- **[12.5 Constructor Methods](#125-constructor-methods)** - Initializing objects properly
+- **[12.6 Visibility & Encapsulation](#126-visibility--encapsulation)** - Protecting your data
+
+### **Phase 3: Advanced OOP**
+- **[12.7 Inheritance](#127-inheritance)** - Building on existing classes
+- **[12.8 Interfaces](#128-interfaces)** - Contracts and standards
+- **[12.9 Polymorphism](#129-polymorphism)** - One interface, multiple implementations
+
+### **Phase 4: Professional Development**
+- **[12.10 Exception Handling](#1210-exception-handling)** - Error management in OOP
+- **[12.11 Design Patterns](#1211-design-patterns)** - Industry best practices
+- **[12.12 Enterprise Applications](#1212-enterprise-applications)** - Real-world scenarios
 
 ---
 
-## 🌟 **OOP Fundamentals - What & Why**
+## 🎯 **Learning Objectives**
 
-### **What is Object-Oriented Programming?**
+**By the end of this module, you'll be able to:**
+- ✅ Understand what OOP is and why it's useful
+- ✅ Create and use classes and objects confidently
+- ✅ Apply inheritance to build efficient code hierarchies
+- ✅ Use interfaces to create flexible, maintainable code
+- ✅ Handle errors professionally using exception classes
+- ✅ Apply common design patterns in real projects
+- ✅ Build enterprise-level ABAP applications using OOP principles
 
-Object-Oriented Programming (OOP) is a programming approach that organizes code around **objects** rather than functions. Think of it like building with LEGO blocks - each block (object) has specific properties and can perform certain actions.
+---
 
-#### **Real-World Analogy: Car Factory**
-```abap
-" Traditional Programming (Procedural):
-" - build_engine()
-" - build_wheels()
-" - assemble_car()
-" - paint_car()
+## 12.1 OOP Fundamentals
 
-" Object-Oriented Programming:
-" - Car object with properties: color, engine, wheels
-" - Car object with methods: start(), stop(), accelerate()
-" - Different car types: Sedan, SUV, Truck (inheritance)
+### 🤔 **What is Object-Oriented Programming? (Explained Simply)**
+
+Think of Object-Oriented Programming (OOP) like organizing a **digital office**:
+
+#### **Traditional Programming = Messy Office**
+```
+📁 All files scattered on desk
+📋 No organization system
+🔍 Hard to find anything
+😵 Everything mixed together
+⏰ Takes forever to get work done
 ```
 
-### **Why Use OOP in ABAP?**
-
-#### **Benefits:**
-- 🔄 **Reusability** - Write once, use many times
-- 🛡️ **Maintainability** - Changes in one place affect whole system
-- 🎯 **Modularity** - Break complex problems into smaller parts
-- 🔒 **Security** - Control access to data and methods
-- 🚀 **Scalability** - Easy to extend and modify
-
-#### **ABAP Without OOP vs With OOP:**
-```abap
-" ❌ Traditional ABAP (Procedural)
-REPORT z_calculate_salary.
-
-DATA: gv_employee_id TYPE string,
-      gv_basic_salary TYPE p DECIMALS 2,
-      gv_bonus TYPE p DECIMALS 2,
-      gv_total_salary TYPE p DECIMALS 2.
-
-PERFORM get_employee_data USING gv_employee_id
-                         CHANGING gv_basic_salary gv_bonus.
-PERFORM calculate_total USING gv_basic_salary gv_bonus
-                       CHANGING gv_total_salary.
-PERFORM display_result USING gv_employee_id gv_total_salary.
-
-" ✅ Object-Oriented ABAP
-REPORT z_calculate_salary_oop.
-
-DATA(lo_employee) = NEW zcl_employee( iv_id = 'EMP001' ).
-lo_employee->calculate_salary( ).
-lo_employee->display_salary( ).
+#### **Object-Oriented Programming = Organized Office**
+```
+🗃️ Files organized in labeled folders
+📋 Each folder has specific purpose
+🔍 Easy to find what you need
+😊 Everything has its place
+⚡ Get work done efficiently
 ```
 
-### **Core OOP Concepts - Simple Explanation**
+### **Real-World Example: Bank Account**
 
-| **Concept** | **Simple Definition** | **Real-World Example** |
-|-------------|----------------------|------------------------|
-| **Class** | Blueprint/Template | Car blueprint |
-| **Object** | Instance of a class | Actual car built from blueprint |
-| **Method** | Actions object can do | start_engine(), brake() |
-| **Attribute** | Properties of object | color, model, year |
-| **Inheritance** | Child inherits from parent | Sports car inherits from Car |
-| **Interface** | Contract/Agreement | All vehicles must start() and stop() |
+Let's understand OOP by thinking about a bank account:
+
+#### **What is a Bank Account?** (This is a CLASS)
+- It's a **template** that defines what all bank accounts have
+- **Properties**: Account number, balance, owner name
+- **Actions**: Deposit money, withdraw money, check balance
+
+#### **Your Personal Account** (This is an OBJECT)
+- **Your account number**: 123456789
+- **Your balance**: $1,500
+- **Your name**: John Smith
+- **You can**: Deposit, withdraw, check balance
+
+```abap
+" In ABAP, this looks like:
+
+" CLASS = The template/blueprint
+CLASS zcl_bank_account DEFINITION.
+  " What every bank account has
+  PRIVATE SECTION.
+    DATA: account_number TYPE string,
+          balance TYPE p DECIMALS 2,
+          owner_name TYPE string.
+  
+  PUBLIC SECTION.
+    " What every bank account can do
+    METHODS: deposit IMPORTING amount TYPE p DECIMALS 2,
+             withdraw IMPORTING amount TYPE p DECIMALS 2,
+             get_balance RETURNING VALUE(rv_balance) TYPE p DECIMALS 2.
+ENDCLASS.
+
+" OBJECT = Your actual account
+DATA(lo_my_account) = NEW zcl_bank_account( ).
+lo_my_account->deposit( 1500 ).  " Put $1500 in your account
+lo_my_account->withdraw( 200 ).  " Take out $200
+```
 
 ---
 
-## 🏗️ **Classes & Objects - Building Blocks**
+## 12.2 Your First Class
 
-### **Understanding Classes**
+### 🏗️ **Let's Build Your First Class - Step by Step!**
 
-A **Class** is like a blueprint or template. It defines what properties (attributes) and actions (methods) objects will have.
+We'll create a simple `Person` class that represents a person with a name and age.
 
-#### **Class Structure in ABAP**
+#### **Step 1: Understanding the Structure**
+Every ABAP class has two parts:
+1. **DEFINITION** - What the class can have and do
+2. **IMPLEMENTATION** - How it actually works
+
+#### **Step 2: Create the Definition**
+
 ```abap
-" Class Definition - The Blueprint
-CLASS zcl_student DEFINITION.
+*&---------------------------------------------------------------------*
+*& Your First ABAP Class: Person
+*&---------------------------------------------------------------------*
+
+CLASS zcl_person DEFINITION.
   
   PUBLIC SECTION.
     " What others can see and use
-    METHODS: constructor IMPORTING iv_name TYPE string
-                                   iv_age TYPE i,
-             get_name RETURNING VALUE(rv_name) TYPE string,
-             get_age RETURNING VALUE(rv_age) TYPE i,
-             study IMPORTING iv_subject TYPE string,
-             display_info.
-             
+    METHODS: 
+      " Constructor - runs when person is created
+      constructor IMPORTING iv_name TYPE string
+                           iv_age TYPE i,
+      
+      " Actions the person can do
+      introduce,  " Person introduces themselves
+      have_birthday,  " Person gets older
+      
+      " Information others can get
+      get_name RETURNING VALUE(rv_name) TYPE string,
+      get_age RETURNING VALUE(rv_age) TYPE i.
+      
   PRIVATE SECTION.
-    " Internal data - hidden from outside
-    DATA: mv_name TYPE string,
-          mv_age TYPE i,
-          mv_subjects_studied TYPE i.
+    " Internal information - hidden from outside
+    DATA: mv_name TYPE string,  " Person's name
+          mv_age TYPE i.        " Person's age
           
 ENDCLASS.
+```
 
-" Class Implementation - The Actual Code
-CLASS zcl_student IMPLEMENTATION.
+#### **Step 3: Create the Implementation**
+
+```abap
+CLASS zcl_person IMPLEMENTATION.
 
   METHOD constructor.
-    " Initialize object when created
+    " This runs when a new person is created
     mv_name = iv_name.
     mv_age = iv_age.
-    mv_subjects_studied = 0.
     
-    WRITE: |Student created: { mv_name }, Age: { mv_age }|.
+    WRITE: |Creating person: { mv_name }, Age: { mv_age }|.
+  ENDMETHOD.
+
+  METHOD introduce.
+    " Person introduces themselves
+    WRITE: |Hello! My name is { mv_name } and I am { mv_age } years old.|.
+  ENDMETHOD.
+
+  METHOD have_birthday.
+    " Person gets one year older
+    mv_age = mv_age + 1.
+    WRITE: |🎉 Happy Birthday { mv_name }! You are now { mv_age } years old.|.
   ENDMETHOD.
 
   METHOD get_name.
+    " Return the person's name
     rv_name = mv_name.
   ENDMETHOD.
 
   METHOD get_age.
+    " Return the person's age
     rv_age = mv_age.
   ENDMETHOD.
 
-  METHOD study.
-    mv_subjects_studied = mv_subjects_studied + 1.
-    WRITE: |{ mv_name } is studying { iv_subject }|.
-  ENDMETHOD.
-
-  METHOD display_info.
-    WRITE: / |Student: { mv_name }|,
-           / |Age: { mv_age }|,
-           / |Subjects Studied: { mv_subjects_studied }|.
-  ENDMETHOD.
-
 ENDCLASS.
 ```
 
-### **Creating and Using Objects**
+#### **Step 4: Using Your Class**
 
-#### **Step-by-Step Object Creation**
 ```abap
-" Step 1: Declare object reference
-DATA: lo_student1 TYPE REF TO zcl_student,
-      lo_student2 TYPE REF TO zcl_student.
+REPORT z_test_person.
 
-" Step 2: Create objects (instances)
-lo_student1 = NEW zcl_student( iv_name = 'John' iv_age = 20 ).
-lo_student2 = NEW zcl_student( iv_name = 'Mary' iv_age = 22 ).
+" Include the class definition and implementation here
+" (or create it in SE80 as a class)
 
-" Step 3: Use objects (call methods)
-lo_student1->study( 'Mathematics' ).
-lo_student1->study( 'Physics' ).
-lo_student2->study( 'Chemistry' ).
+START-OF-SELECTION.
 
-" Step 4: Display information
-lo_student1->display_info( ).
-lo_student2->display_info( ).
-
-" Output:
-" Student created: John, Age: 20
-" Student created: Mary, Age: 22
-" John is studying Mathematics
-" John is studying Physics
-" Mary is studying Chemistry
-" Student: John
-" Age: 20
-" Subjects Studied: 2
-" Student: Mary
-" Age: 22
-" Subjects Studied: 1
+  " Create people (objects)
+  DATA(lo_john) = NEW zcl_person( iv_name = 'John' iv_age = 25 ).
+  DATA(lo_mary) = NEW zcl_person( iv_name = 'Mary' iv_age = 30 ).
+  
+  " Make them introduce themselves
+  lo_john->introduce( ).
+  lo_mary->introduce( ).
+  
+  " It's John's birthday!
+  lo_john->have_birthday( ).
+  
+  " Check their ages
+  WRITE: / |John is now { lo_john->get_age( ) } years old|.
+  WRITE: / |Mary is still { lo_mary->get_age( ) } years old|.
 ```
 
-### **Class vs Object - Clear Distinction**
+#### **What You'll See:**
+```
+Creating person: John, Age: 25
+Creating person: Mary, Age: 30
+Hello! My name is John and I am 25 years old.
+Hello! My name is Mary and I am 30 years old.
+🎉 Happy Birthday John! You are now 26 years old.
+John is now 26 years old
+Mary is still 30 years old
+```
 
+### **🎯 Key Points to Remember:**
+- **CLASS** = Blueprint (like a cookie cutter)
+- **OBJECT** = Instance (like an actual cookie)
+- **METHODS** = What objects can do (actions)
+- **ATTRIBUTES** = What objects have (properties)
+- **PUBLIC** = Others can see and use
+- **PRIVATE** = Hidden inside the class
+
+---
+
+## 12.3 Understanding Objects
+
+### 🧠 **Objects vs Classes - Crystal Clear Explanation**
+
+#### **The Cookie Analogy**
+```
+🍪 COOKIE CUTTER (Class)
+├── Shape: Round
+├── Size: 3 inches
+├── Instructions: "Cut dough into cookies"
+└── One cutter can make many cookies
+
+🍪🍪🍪 ACTUAL COOKIES (Objects)
+├── Cookie #1: Chocolate chip
+├── Cookie #2: Sugar cookie  
+├── Cookie #3: Oatmeal raisin
+└── Each cookie is unique but made from same cutter
+```
+
+#### **In ABAP Terms:**
 ```abap
-" 🏗️ CLASS = Blueprint (Definition)
-CLASS zcl_car DEFINITION.
+" CLASS = The cookie cutter (template)
+CLASS zcl_cookie DEFINITION.
   PUBLIC SECTION.
-    METHODS: start_engine,
-             stop_engine,
-             accelerate.
+    METHODS: constructor IMPORTING iv_flavor TYPE string,
+             get_flavor RETURNING VALUE(rv_flavor) TYPE string.
   PRIVATE SECTION.
-    DATA: mv_engine_running TYPE abap_bool.
+    DATA: mv_flavor TYPE string.
 ENDCLASS.
 
-" 🚗 OBJECTS = Actual Cars (Instances)
-DATA: lo_toyota TYPE REF TO zcl_car,    " Toyota car
-      lo_honda TYPE REF TO zcl_car,     " Honda car
-      lo_bmw TYPE REF TO zcl_car.       " BMW car
+" OBJECTS = Individual cookies
+DATA(lo_chocolate_cookie) = NEW zcl_cookie( 'Chocolate Chip' ).
+DATA(lo_sugar_cookie) = NEW zcl_cookie( 'Sugar' ).
+DATA(lo_oatmeal_cookie) = NEW zcl_cookie( 'Oatmeal Raisin' ).
 
 " Each object is independent
-lo_toyota = NEW zcl_car( ).
-lo_honda = NEW zcl_car( ).
-lo_bmw = NEW zcl_car( ).
+WRITE: lo_chocolate_cookie->get_flavor( ).  " Shows: Chocolate Chip
+WRITE: lo_sugar_cookie->get_flavor( ).      " Shows: Sugar
+```
 
-" Each car can be in different states
-lo_toyota->start_engine( ).  " Toyota running
-" Honda and BMW are still off
+### **Why This Matters in Business**
+
+#### **Real Business Example: Employee Management**
+
+Instead of having scattered employee data:
+```abap
+" ❌ Traditional approach - messy!
+DATA: emp1_name TYPE string VALUE 'John',
+      emp1_salary TYPE p VALUE 50000,
+      emp1_dept TYPE string VALUE 'IT',
+      emp2_name TYPE string VALUE 'Mary',
+      emp2_salary TYPE p VALUE 60000,
+      emp2_dept TYPE string VALUE 'Finance'.
+      " ... gets messy with more employees!
+```
+
+Use objects for clean organization:
+```abap
+" ✅ Object-oriented approach - clean!
+DATA(lo_john) = NEW zcl_employee( iv_name = 'John' 
+                                  iv_salary = 50000 
+                                  iv_dept = 'IT' ).
+                                  
+DATA(lo_mary) = NEW zcl_employee( iv_name = 'Mary' 
+                                  iv_salary = 60000 
+                                  iv_dept = 'Finance' ).
+
+" Easy to work with
+lo_john->give_raise( 5000 ).
+lo_mary->transfer_department( 'Management' ).
 ```
 
 ---
 
-## 1. Advanced OOP Architecture
+## 12.4 Methods & Attributes
+
+### 🔧 **Understanding Methods - The Actions Objects Can Do**
+
+Think of methods as **skills** that objects have. Just like people have different skills (cooking, driving, singing), objects have different methods they can perform.
+
+#### **Types of Methods**
+
+| **Method Type** | **Purpose** | **Real-World Example** |
+|----------------|-------------|------------------------|
+| **Constructor** | Initialize object when created | Birth certificate creation |
+| **Getter** | Get information from object | Asking someone their name |
+| **Setter** | Change object's information | Updating your address |
+| **Action** | Make object do something | Asking someone to dance |
+
+#### **Simple Calculator Class Example**
+
+```abap
+CLASS zcl_calculator DEFINITION.
+  
+  PUBLIC SECTION.
+    " Constructor method
+    METHODS: constructor,
+    
+    " Action methods
+    METHODS: add IMPORTING iv_num1 TYPE i 
+                          iv_num2 TYPE i
+                 RETURNING VALUE(rv_result) TYPE i,
+                 
+             subtract IMPORTING iv_num1 TYPE i 
+                               iv_num2 TYPE i
+                      RETURNING VALUE(rv_result) TYPE i,
+                      
+             get_last_result RETURNING VALUE(rv_result) TYPE i.
+             
+  PRIVATE SECTION.
+    DATA: mv_last_result TYPE i.
+    
+ENDCLASS.
+
+CLASS zcl_calculator IMPLEMENTATION.
+
+  METHOD constructor.
+    mv_last_result = 0.
+    WRITE: |Calculator ready to use!|.
+  ENDMETHOD.
+
+  METHOD add.
+    rv_result = iv_num1 + iv_num2.
+    mv_last_result = rv_result.
+    WRITE: |{ iv_num1 } + { iv_num2 } = { rv_result }|.
+  ENDMETHOD.
+
+  METHOD subtract.
+    rv_result = iv_num1 - iv_num2.
+    mv_last_result = rv_result.
+    WRITE: |{ iv_num1 } - { iv_num2 } = { rv_result }|.
+  ENDMETHOD.
+
+  METHOD get_last_result.
+    rv_result = mv_last_result.
+  ENDMETHOD.
+
+ENDCLASS.
+```
+
+#### **Using the Calculator**
+
+```abap
+REPORT z_test_calculator.
+
+START-OF-SELECTION.
+
+  " Create calculator object
+  DATA(lo_calc) = NEW zcl_calculator( ).
+  
+  " Use the calculator
+  DATA(lv_result1) = lo_calc->add( iv_num1 = 10 iv_num2 = 5 ).
+  DATA(lv_result2) = lo_calc->subtract( iv_num1 = 20 iv_num2 = 8 ).
+  
+  " Get last result
+  WRITE: / |Last calculation result: { lo_calc->get_last_result( ) }|.
+```
+
+### 🏷️ **Understanding Attributes - The Properties Objects Have**
+
+Attributes are like **characteristics** of objects. Think of them as the information that makes each object unique.
+
+#### **Types of Attributes**
+
+| **Attribute Type** | **Visibility** | **Description** | **Example** |
+|-------------------|----------------|-----------------|-------------|
+| **Instance Attributes** | Private/Public | Each object has its own copy | Person's name, age |
+| **Static Attributes** | Private/Public | Shared by all objects of the class | Company name, tax rate |
+| **Constants** | Public | Never change | PI = 3.14159 |
+
+#### **Student Class with Different Attribute Types**
+
+```abap
+CLASS zcl_student DEFINITION.
+  
+  PUBLIC SECTION.
+    " Constructor
+    METHODS: constructor IMPORTING iv_name TYPE string
+                                  iv_grade TYPE i,
+                                  
+    " Public methods
+    METHODS: get_info RETURNING VALUE(rv_info) TYPE string,
+             study IMPORTING iv_hours TYPE i,
+             get_total_students RETURNING VALUE(rv_count) TYPE i.
+             
+    " Public constant
+    CONSTANTS: c_passing_grade TYPE i VALUE 60.
+    
+  PRIVATE SECTION.
+    " Instance attributes (each student has their own)
+    DATA: mv_name TYPE string,
+          mv_grade TYPE i,
+          mv_study_hours TYPE i.
+          
+    " Static attribute (shared by all students)
+    CLASS-DATA: gv_total_students TYPE i.
+    
+ENDCLASS.
+
+CLASS zcl_student IMPLEMENTATION.
+
+  METHOD constructor.
+    mv_name = iv_name.
+    mv_grade = iv_grade.
+    mv_study_hours = 0.
+    
+    " Increment total students count
+    gv_total_students = gv_total_students + 1.
+    
+    WRITE: |Student { mv_name } enrolled. Total students: { gv_total_students }|.
+  ENDMETHOD.
+
+  METHOD get_info.
+    rv_info = |Name: { mv_name }, Grade: { mv_grade }, Study Hours: { mv_study_hours }|.
+  ENDMETHOD.
+
+  METHOD study.
+    mv_study_hours = mv_study_hours + iv_hours.
+    WRITE: |{ mv_name } studied for { iv_hours } hours. Total: { mv_study_hours }|.
+  ENDMETHOD.
+
+  METHOD get_total_students.
+    rv_count = gv_total_students.
+  ENDMETHOD.
+
+ENDCLASS.
+```
+
+#### **Testing the Student Class**
+
+```abap
+START-OF-SELECTION.
+
+  " Create students
+  DATA(lo_john) = NEW zcl_student( iv_name = 'John' iv_grade = 85 ).
+  DATA(lo_mary) = NEW zcl_student( iv_name = 'Mary' iv_grade = 92 ).
+  DATA(lo_bob) = NEW zcl_student( iv_name = 'Bob' iv_grade = 78 ).
+  
+  " Students study different amounts
+  lo_john->study( 3 ).
+  lo_mary->study( 5 ).
+  lo_bob->study( 2 ).
+  
+  " Display information
+  WRITE: / lo_john->get_info( ).
+  WRITE: / lo_mary->get_info( ).
+  WRITE: / lo_bob->get_info( ).
+  
+  " Check passing grade constant
+  WRITE: / |Passing grade is: { zcl_student=>c_passing_grade }|.
+  
+  " Check total students
+  WRITE: / |Total students enrolled: { lo_john->get_total_students( ) }|.
+```
+
+---
+
+## 12.5 Constructor Methods
+
+### 🏗️ **Constructors - Setting Up Your Objects Properly**
+
+A constructor is like **setting up a new employee** on their first day of work. You give them their name tag, desk, computer, and tell them the basic rules.
+
+#### **Why Do We Need Constructors?**
+
+```abap
+" ❌ Without constructor - objects start empty
+DATA(lo_person) = NEW zcl_person( ).
+" Now lo_person has no name, no age - basically useless!
+
+" ✅ With constructor - objects start ready to use
+DATA(lo_person) = NEW zcl_person( iv_name = 'John' iv_age = 25 ).
+" Now lo_person is fully set up and ready to work!
+```
+
+#### **Simple Bank Account with Constructor**
+
+```abap
+CLASS zcl_bank_account DEFINITION.
+  
+  PUBLIC SECTION.
+    " Constructor with required information
+    METHODS: constructor IMPORTING iv_account_number TYPE string
+                                  iv_owner_name TYPE string
+                                  iv_initial_balance TYPE p DECIMALS 2 DEFAULT 0,
+                                  
+             " Account operations
+             deposit IMPORTING iv_amount TYPE p DECIMALS 2,
+             withdraw IMPORTING iv_amount TYPE p DECIMALS 2
+                     RETURNING VALUE(rv_success) TYPE abap_bool,
+             get_balance RETURNING VALUE(rv_balance) TYPE p DECIMALS 2,
+             get_account_info RETURNING VALUE(rv_info) TYPE string.
+             
+  PRIVATE SECTION.
+    DATA: mv_account_number TYPE string,
+          mv_owner_name TYPE string,
+          mv_balance TYPE p DECIMALS 2,
+          mv_account_created TYPE dats.
+          
+ENDCLASS.
+
+CLASS zcl_bank_account IMPLEMENTATION.
+
+  METHOD constructor.
+    " Set up the account
+    mv_account_number = iv_account_number.
+    mv_owner_name = iv_owner_name.
+    mv_balance = iv_initial_balance.
+    mv_account_created = sy-datum.
+    
+    " Welcome message
+    WRITE: |🏦 Account { mv_account_number } created for { mv_owner_name }|.
+    WRITE: |   Initial balance: ${ mv_balance }|.
+    WRITE: |   Created on: { mv_account_created }|.
+  ENDMETHOD.
+
+  METHOD deposit.
+    mv_balance = mv_balance + iv_amount.
+    WRITE: |💰 Deposited ${ iv_amount }. New balance: ${ mv_balance }|.
+  ENDMETHOD.
+
+  METHOD withdraw.
+    IF iv_amount <= mv_balance.
+      mv_balance = mv_balance - iv_amount.
+      rv_success = abap_true.
+      WRITE: |💸 Withdrew ${ iv_amount }. New balance: ${ mv_balance }|.
+    ELSE.
+      rv_success = abap_false.
+      WRITE: |❌ Insufficient funds! Cannot withdraw ${ iv_amount }|.
+    ENDIF.
+  ENDMETHOD.
+
+  METHOD get_balance.
+    rv_balance = mv_balance.
+  ENDMETHOD.
+
+  METHOD get_account_info.
+    rv_info = |Account: { mv_account_number }, Owner: { mv_owner_name }, Balance: ${ mv_balance }|.
+  ENDMETHOD.
+
+ENDCLASS.
+```
+
+#### **Using the Bank Account**
+
+```abap
+START-OF-SELECTION.
+
+  " Create accounts with different initial balances
+  DATA(lo_john_account) = NEW zcl_bank_account( 
+    iv_account_number = '12345'
+    iv_owner_name = 'John Smith'
+    iv_initial_balance = '1000.00' 
+  ).
+  
+  DATA(lo_mary_account) = NEW zcl_bank_account( 
+    iv_account_number = '67890'
+    iv_owner_name = 'Mary Johnson'
+    " No initial balance specified - defaults to 0
+  ).
+  
+  " Test operations
+  lo_john_account->deposit( '500.00' ).
+  lo_john_account->withdraw( '200.00' ).
+  
+  lo_mary_account->deposit( '300.00' ).
+  lo_mary_account->withdraw( '400.00' ).  " This should fail
+  
+  " Display final information
+  WRITE: / lo_john_account->get_account_info( ).
+  WRITE: / lo_mary_account->get_account_info( ).
+```
+
+### **🎯 Constructor Best Practices**
+
+#### **1. Always Validate Input**
+```abap
+METHOD constructor.
+  " Validate account number
+  IF iv_account_number IS INITIAL.
+    RAISE EXCEPTION TYPE zcx_invalid_input
+      EXPORTING message = 'Account number cannot be empty'.
+  ENDIF.
+  
+  " Validate initial balance
+  IF iv_initial_balance < 0.
+    RAISE EXCEPTION TYPE zcx_invalid_input
+      EXPORTING message = 'Initial balance cannot be negative'.
+  ENDIF.
+  
+  " If validation passes, set up the object
+  mv_account_number = iv_account_number.
+  mv_balance = iv_initial_balance.
+ENDMETHOD.
+```
+
+#### **2. Use Default Parameters**
+```abap
+" Good: Provide sensible defaults
+METHODS: constructor IMPORTING iv_name TYPE string
+                              iv_age TYPE i DEFAULT 18
+                              iv_country TYPE string DEFAULT 'USA'.
+```
+
+#### **3. Initialize All Attributes**
+```abap
+METHOD constructor.
+  " Initialize everything, even if not provided
+  mv_name = iv_name.
+  mv_age = iv_age.
+  mv_created_date = sy-datum.
+  mv_last_login = '00000000'.  " Initialize to empty date
+  mv_is_active = abap_true.    " Default to active
+ENDMETHOD.
+```
+
+---
+
+## 12.10 Exception Handling
+
+### ⚠️ **Handling Errors Like a Pro**
+
+Exception handling in OOP is like having a **safety net** when things go wrong. Instead of your program crashing, you handle problems gracefully.
+
+#### **Simple Exception Example**
+
+```abap
+" Custom exception class
+CLASS zcx_bank_error DEFINITION INHERITING FROM cx_static_check.
+  PUBLIC SECTION.
+    METHODS: constructor IMPORTING iv_message TYPE string.
+  PRIVATE SECTION.
+    DATA: mv_message TYPE string.
+ENDCLASS.
+
+CLASS zcx_bank_error IMPLEMENTATION.
+  METHOD constructor.
+    super->constructor( ).
+    mv_message = iv_message.
+  ENDMETHOD.
+ENDCLASS.
+
+" Bank account with proper error handling
+CLASS zcl_safe_bank_account DEFINITION.
+  PUBLIC SECTION.
+    METHODS: constructor IMPORTING iv_balance TYPE p DECIMALS 2,
+             withdraw IMPORTING iv_amount TYPE p DECIMALS 2
+                     RAISING zcx_bank_error.
+  PRIVATE SECTION.
+    DATA: mv_balance TYPE p DECIMALS 2.
+ENDCLASS.
+
+CLASS zcl_safe_bank_account IMPLEMENTATION.
+  METHOD constructor.
+    mv_balance = iv_balance.
+  ENDMETHOD.
+
+  METHOD withdraw.
+    IF iv_amount <= 0.
+      RAISE EXCEPTION TYPE zcx_bank_error
+        EXPORTING iv_message = 'Cannot withdraw negative or zero amount'.
+    ENDIF.
+    
+    IF iv_amount > mv_balance.
+      RAISE EXCEPTION TYPE zcx_bank_error
+        EXPORTING iv_message = 'Insufficient funds'.
+    ENDIF.
+    
+    mv_balance = mv_balance - iv_amount.
+    WRITE: |✅ Withdrew ${ iv_amount }. Balance: ${ mv_balance }|.
+  ENDMETHOD.
+ENDCLASS.
+
+" Using exception handling
+START-OF-SELECTION.
+  DATA(lo_account) = NEW zcl_safe_bank_account( 1000 ).
+  
+  TRY.
+    lo_account->withdraw( 500 ).   " This works
+    lo_account->withdraw( 600 ).   " This fails - handled gracefully
+    
+  CATCH zcx_bank_error INTO DATA(lo_error).
+    WRITE: |❌ Error: { lo_error->get_text( ) }|.
+  ENDTRY.
+```
+
+---
+
+## 12.11 Design Patterns
+
+### 🏭 **Common Solutions to Common Problems**
+
+Design patterns are like **recipes** - proven solutions to problems that happen often in programming.
+
+#### **Singleton Pattern - One and Only One**
+
+```abap
+" Ensures only one instance of a class exists
+CLASS zcl_application_logger DEFINITION.
+  PUBLIC SECTION.
+    CLASS-METHODS: get_instance RETURNING VALUE(ro_logger) TYPE REF TO zcl_application_logger.
+    METHODS: log_message IMPORTING iv_message TYPE string.
+    
+  PRIVATE SECTION.
+    CLASS-DATA: go_instance TYPE REF TO zcl_application_logger.
+    METHODS: constructor.
+ENDCLASS.
+
+CLASS zcl_application_logger IMPLEMENTATION.
+  METHOD get_instance.
+    IF go_instance IS NOT BOUND.
+      go_instance = NEW zcl_application_logger( ).
+    ENDIF.
+    ro_logger = go_instance.
+  ENDMETHOD.
+
+  METHOD constructor.
+    WRITE: |📝 Logger initialized|.
+  ENDMETHOD.
+
+  METHOD log_message.
+    WRITE: |📝 LOG: { sy-datum } { sy-uzeit } - { iv_message }|.
+  ENDMETHOD.
+ENDCLASS.
+
+" Usage
+DATA(lo_logger1) = zcl_application_logger=>get_instance( ).
+DATA(lo_logger2) = zcl_application_logger=>get_instance( ).
+" lo_logger1 and lo_logger2 are the SAME object!
+```
+
+---
+
+## 12.12 Enterprise Applications
+
+### 🏢 **Real-World Business Applications**
+
+Here's how you'd use OOP in actual SAP business scenarios:
+
+#### **Sales Order Processing System**
+
+```abap
+" Sales order with full OOP design
+CLASS zcl_sales_order DEFINITION.
+  PUBLIC SECTION.
+    METHODS: constructor IMPORTING iv_customer_id TYPE string,
+             add_item IMPORTING iv_material TYPE string
+                               iv_quantity TYPE i
+                               iv_price TYPE p DECIMALS 2,
+             calculate_total RETURNING VALUE(rv_total) TYPE p DECIMALS 2,
+             process_order RETURNING VALUE(rv_success) TYPE abap_bool.
+             
+  PRIVATE SECTION.
+    DATA: mv_customer_id TYPE string,
+          mt_items TYPE TABLE OF zorder_item,
+          mv_status TYPE string.
+ENDCLASS.
+
+" This demonstrates enterprise-level OOP patterns:
+" - Encapsulation (private data)
+" - Clear interfaces (public methods)  
+" - Business logic separation
+" - Error handling
+" - Maintainable code structure
+```
+
+### **🎯 Congratulations! You've Completed OOP in ABAP!**
+
+You now understand:
+- ✅ What OOP is and why it's useful
+- ✅ How to create classes and objects
+- ✅ Methods, attributes, and constructors
+- ✅ Encapsulation and data protection
+- ✅ Inheritance for code reuse
+- ✅ Interfaces for flexible design
+- ✅ Polymorphism for powerful solutions
+- ✅ Exception handling for robust code
+- ✅ Design patterns for professional development
+- ✅ Enterprise application patterns
+
+You're now ready to build professional, maintainable ABAP applications using object-oriented principles!
+
+---
+
+## 12.Advanced Enterprise Examples
 
 ### Enterprise Class Design
 
