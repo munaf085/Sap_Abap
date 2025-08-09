@@ -582,19 +582,168 @@ ASSERT lv_value > 0.
 ASSERT ID zassert_group CONDITION lv_value <> 0.
 ```
 
-#### **Debugging Aids**
+#### **🐛 Complete ABAP Debugging Arsenal**
+
+##### **1. Breakpoint Types**
+
+**Hard-Coded Breakpoints**
 ```abap
-" Set breakpoint
+" Unconditional breakpoint
 BREAK-POINT.
 
 " Conditional breakpoint
-IF lv_debug_mode = abap_true.
+IF lv_debug_flag = 'X'.
   BREAK-POINT.
 ENDIF.
 
-" Write to debug log
-MESSAGE i001(z_custom) WITH 'Debug message' lv_value.
+" Breakpoint with user check
+BREAK sy-uname.  " Only breaks for specific user
 ```
+
+**External Breakpoints (SE80/ADT)**
+- **Set in Editor**: Double-click line number
+- **Session Breakpoints**: Valid for current session only
+- **User Breakpoints**: Valid for specific user
+- **HTTP Breakpoints**: For web-based debugging
+
+##### **2. Debugging Commands & Shortcuts**
+
+| **Key** | **Action** | **Description** |
+|---------|------------|-----------------|
+| **F5** | Single Step | Execute current line |
+| **F6** | Execute | Execute current statement block |
+| **F7** | Return | Return from subroutine/method |
+| **F8** | Continue | Continue to next breakpoint |
+| **Shift+F12** | Terminate | Stop debugging session |
+
+##### **3. Debug Techniques by Scenario**
+
+**🔍 Variable Inspection**
+```abap
+" In debugger, use these techniques:
+" 1. Variables tab - see all variables in scope
+" 2. Watchpoints - monitor specific variable changes
+" 3. Change variable values during debug session
+
+" Example: Inspect internal table
+DATA: lt_customers TYPE TABLE OF kna1.
+SELECT * FROM kna1 INTO TABLE lt_customers UP TO 10 ROWS.
+
+BREAK-POINT.  " Check lt_customers content here
+```
+
+**🔍 SQL Statement Debugging**
+```abap
+" Debug database operations
+SELECT single * FROM mara INTO DATA(ls_material)
+  WHERE matnr = 'TEST123'.
+
+BREAK-POINT.  " Check ls_material and sy-subrc
+
+" Use SQL Trace (ST05) for detailed DB analysis:
+" 1. Go to ST05
+" 2. Turn on SQL trace
+" 3. Execute your program
+" 4. Turn off trace and analyze
+```
+
+**🔍 Exception Debugging**
+```abap
+TRY.
+    DATA(lv_result) = 10 / 0.
+  CATCH cx_sy_zerodivide INTO DATA(lx_error).
+    BREAK-POINT.  " Debug exception details
+    WRITE: lx_error->get_text( ).
+ENDTRY.
+```
+
+##### **4. Advanced Debugging Features**
+
+**Watchpoints (Variable Monitoring)**
+```abap
+" Set watchpoint in debugger:
+" 1. Go to Breakpoints tab
+" 2. Click Watchpoint
+" 3. Enter variable name and condition
+" Example: gv_counter > 100
+```
+
+**Conditional Breakpoints**
+```abap
+" Method 1: In code
+IF sy-uname = 'DEVELOPER' AND lv_test_mode = 'X'.
+  BREAK-POINT.
+ENDIF.
+
+" Method 2: In debugger
+" Set condition directly on breakpoint in debugger UI
+```
+
+##### **5. Professional Debugging Tools**
+
+**Runtime Analysis (SAT)**
+```abap
+" Transaction: SAT
+" Measure performance while debugging
+" 1. Go to SAT
+" 2. Enter program name
+" 3. Execute with measurement
+" 4. Analyze runtime statistics
+```
+
+**SQL Trace (ST05)**
+```abap
+" Analyze database calls
+" 1. ST05 → Turn on SQL trace
+" 2. Execute program
+" 3. Turn off trace
+" 4. Display trace → Analyze DB performance
+```
+
+##### **6. Debug Production Issues Safely**
+
+**Safe Production Debugging**
+```abap
+" Method 1: Use logging instead of breakpoints
+" Create log entries for investigation
+
+" Method 2: Conditional debugging
+IF sy-mandt = '100' AND sy-uname = 'DEVELOPER'.
+  BREAK-POINT.
+ENDIF.
+
+" Method 3: Use application log
+MESSAGE i001(z_custom) WITH 'Debug info:' lv_variable.
+```
+
+##### **7. Best Practices**
+
+**DO's:**
+- ✅ **Use meaningful variable names** for easier debugging
+- ✅ **Remove breakpoints** before transport
+- ✅ **Use conditional breakpoints** to avoid unnecessary stops
+- ✅ **Check sy-subrc** after database operations
+- ✅ **Use logging** for production debugging
+
+**DON'Ts:**
+- ❌ **Don't leave BREAK-POINT** in production code
+- ❌ **Don't debug in production** without proper authorization
+- ❌ **Don't modify data** during debugging sessions
+- ❌ **Don't debug without understanding** the business process
+
+##### **8. Quick Debug Commands Reference**
+
+| **Scenario** | **Command/Action** |
+|-------------|-------------------|
+| **Start Debug** | `/h` in command field |
+| **Set Breakpoint** | `BREAK-POINT.` in code |
+| **External Breakpoint** | Double-click line in SE80 |
+| **Step Into** | F5 |
+| **Step Over** | F6 |
+| **Continue** | F8 |
+| **Change Variable** | Double-click variable in debugger |
+| **SQL Trace** | ST05 |
+| **Performance** | SAT |
 
 ---
 
@@ -727,3 +876,5 @@ In **Module 4**, we'll explore:
 | [Module 2: ABAP Workbench & Development Environment](Module_02_ABAP_Workbench.md) | [Module 4: Data Dictionary (DDIC)](Module_04_Data_Dictionary.md) |
 
 **Additional Resources**: [📚 Comprehensive Resource Hub](Additional_Resources.md) - Access all documentation, tools, and learning materials in one place.
+
+**🐛 Debugging Reference**: [Complete ABAP Debugging Guide](ABAP_Debugging_Complete_Guide.md) - Master professional debugging techniques and troubleshooting strategies.

@@ -60,6 +60,7 @@
 | Component | Description | Status |
 |-----------|-------------|--------|
 | [Hands-On Exercises](Hands_On_Exercises_Projects.md) | Foundation to Expert Level Exercises | ✅ |
+| [🐛 ABAP Debugging Guide](ABAP_Debugging_Complete_Guide.md) | Complete Professional Debugging Reference | ✅ |
 | [Additional Resources](Additional_Resources.md) | Documentation, Tools & References | ✅ |
 
 ---
